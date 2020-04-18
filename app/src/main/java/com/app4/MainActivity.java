@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO dodać opcje landscape
+                //TODO dodać opcje landscape do dodawania kontaktów
                 Intent intent = new Intent(v.getContext(), AddContactActivity.class);
                 startActivityForResult(intent,1);
             }

@@ -7,10 +7,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
+
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.regex.Pattern;
 
 public class AddContactActivity extends AppCompatActivity {
 
+    public static final Pattern PATTERN_PHONE = Pattern.compile("[\\d]{9}");
+    public static final Pattern PATTERN_BIRTHDAY = Pattern.compile("^(((0[1-9]|[1-2][0-9]|3[0-1]))/(0[13578]|(10|12))|((0[1-9]|[1-2][0-9])/02)|((0[1-9]|[1-2][0-9]|30))/(0[469]|11))/[0-9]{4}$");
+    public static final Pattern PATTERN_NAME = Pattern.compile("[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+" + "\\s?" + "[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]*");
+    public static final Pattern PATTERN_SURNAME = Pattern.compile("[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]+" + "-?" + "[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]*");
+    private TextInputLayout textLayoutName;
+    private TextInputLayout textLayoutSurame;
+    private TextInputLayout textLayoutPhone;
+    private TextInputLayout textLayoutBirthday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,27 +54,94 @@ public class AddContactActivity extends AppCompatActivity {
 
     public void addClick2(View view) {
 
-        EditText taskNameEditText = findViewById(R.id.taskTitle);
-        EditText taskPhoneEditText = findViewById(R.id.taskPhone);
-        EditText taskSurnameEditText = findViewById(R.id.taskSurname);
-        EditText taskBirthdayEditText = findViewById(R.id.taskBirthday);
+        textLayoutName = findViewById(R.id.text_input_name);
+        textLayoutPhone = findViewById(R.id.text_input_phone);
+        textLayoutSurame = findViewById(R.id.text_input_surname);
+        textLayoutBirthday = findViewById(R.id.text_input_birthday);
 
-        String taskName = taskNameEditText.getText().toString();
-        String taskPhone = taskPhoneEditText.getText().toString();
-        String taskSurname = taskSurnameEditText.getText().toString();
-        String taskBirthday = taskBirthdayEditText.getText().toString();
+        if(confirmInput(view)) {
+            String taskName = textLayoutName.getEditText().getText().toString();
+            String taskPhone = textLayoutPhone.getEditText().getText().toString();
+            String taskSurname = textLayoutSurame.getEditText().getText().toString();
+            String taskBirthday = textLayoutBirthday.getEditText().getText().toString();
 
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert imm != null;
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-        Intent data = new Intent();
-        data.putExtra(MainActivity.addName, taskName);
-        data.putExtra(MainActivity.addPhone, taskPhone);
-        data.putExtra(MainActivity.addSurname, taskSurname);
-        data.putExtra(MainActivity.addBirthday, taskBirthday);
-        setResult(RESULT_OK, data);
-        finish();
+            Intent data = new Intent();
+            data.putExtra(MainActivity.addName, taskName);
+            data.putExtra(MainActivity.addPhone, taskPhone);
+            data.putExtra(MainActivity.addSurname, taskSurname);
+            data.putExtra(MainActivity.addBirthday, taskBirthday);
+            setResult(RESULT_OK, data);
+            finish();
+        }else {
+            return;
+        }
+    }
+
+    public boolean confirmInput(View view) {
+        if (!validateName() | !validatePhone() | !validateSurname() | !validateBirthday()) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateName() {
+        String inputName = textLayoutName.getEditText().getText().toString().trim();
+        if (inputName.isEmpty()) {
+            textLayoutName.setError("Field can't be empty");
+            return false;
+        } else if (!PATTERN_NAME.matcher(inputName).matches()) {
+            textLayoutName.setError("Enter a valid surname: only 1 space");
+            return false;
+        } else {
+            textLayoutName.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validatePhone() {
+        String inputPhone = textLayoutPhone.getEditText().getText().toString().trim();
+        if (inputPhone.isEmpty()) {
+            textLayoutPhone.setError("Field can't be empty");
+            return false;
+        } else if (!PATTERN_PHONE.matcher(inputPhone).matches()) {
+            textLayoutPhone.setError("Enter a valid phone number");
+            return false;
+        } else {
+            textLayoutPhone.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateSurname() {
+        String inputSurname = textLayoutSurame.getEditText().getText().toString().trim();
+        if (inputSurname.isEmpty()) {
+            textLayoutSurame.setError("Field can't be empty");
+            return false;
+        } else if (!PATTERN_SURNAME.matcher(inputSurname).matches()) {
+            textLayoutSurame.setError("Enter a valid surname: only \" - \"");
+            return false;
+        } else {
+            textLayoutSurame.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateBirthday() {
+        String inputBirthday = textLayoutBirthday.getEditText().getText().toString();
+        if (inputBirthday.isEmpty()) {
+            textLayoutBirthday.setError("Field can't be empty");
+            return false;
+        } else if (!PATTERN_BIRTHDAY.matcher(inputBirthday).matches()) {
+            textLayoutBirthday.setError("Enter a valid birthday: only dd/mm/yyyy");
+            return false;
+        } else {
+            textLayoutBirthday.setError(null);
+            return true;
+        }
     }
 
 

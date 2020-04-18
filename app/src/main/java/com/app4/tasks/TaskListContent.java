@@ -37,7 +37,7 @@ public class TaskListContent {
     }
 
     private static Task createDummyItem(int position) {
-        return new Task(String.valueOf(position), "Name " + position, makePhoneNumber(position), "Kowalski", "21101997");
+        return new Task(String.valueOf(position), "Name " + position, makePhoneNumber(position), "Kowalski", "0"+((position-1)%9+1)+"/0"+((position-1)%9+1)+"/2020");
     }
 
     private static String makePhoneNumber(int position) {

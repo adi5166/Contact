@@ -34,7 +34,7 @@
 
     <string name="default_name">Jan</string>
     <string name="default_surname">Kowalski</string>
-    <string name="default_birthday">11111997</string>
+    <string name="default_birthday">01/01/2020</string>
     <string name="default_phone">123456789</string>
 
     <string name="call_dialog_tag">call_dialog</string>
