@@ -9,7 +9,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.app4.tasks.TaskListContent;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,10 +21,14 @@ public class MainActivity extends AppCompatActivity implements
     public static final String taskExtra = "taskExtra";
     private int currentItemPosition = -1;
 
-    public static final String addTitle = "addTitle";
-    public static final String addDesc = "addDesc";
-    private String Title;
-    private String Desc;
+    public static final String addName = "addName";
+    public static final String addPhone = "addPhone";
+    public static final String addSurname = "addSurname";
+    public static final String addBirthday = "addBirthday";
+    private String Name;
+    private String Phone;
+    private String Surname;
+    private String Birthday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +45,54 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-                Title = data.getStringExtra(addTitle);
-                Desc = data.getStringExtra(addDesc);
+                Name = data.getStringExtra(addName);
+                Phone = data.getStringExtra(addPhone);
+                Surname = data.getStringExtra(addSurname);
+                Birthday = data.getStringExtra(addBirthday);
                 addNewClick();
             }
         }
     }
 
+    public void addNewClick() {
+        if (Name.isEmpty() && Phone.isEmpty() && Surname.isEmpty() && Birthday.isEmpty()) {
+            TaskListContent.addItem(new TaskListContent.Task(
+                    "Task" + TaskListContent.ITEMS.size() + 1,
+                    getString(R.string.default_name),
+                    getString(R.string.default_phone),
+                    getString(R.string.default_surname),
+                    getString(R.string.default_birthday)));
+        } else {
+            if (Name.isEmpty()) {
+                Name = getString(R.string.default_name);
+            }
+            if (Phone.isEmpty()) {
+                Phone = getString(R.string.default_phone);
+            }
+            if(Surname.isEmpty()) {
+                Surname = getString(R.string.default_surname);
+            }
+            if(Birthday.isEmpty()) {
+                Birthday = getString(R.string.default_birthday);
+            }
+            TaskListContent.addItem(new TaskListContent.Task("Task" + TaskListContent.ITEMS.size() + 1,
+                    Name, Phone, Surname, Birthday));
+        }
+        ((TaskFragment) getSupportFragmentManager().findFragmentById(R.id.taskFragment)).notifyDataChange();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
+    }
+
     private void showDeleteDialog() {
         DeleteDialog.newInstance().show(getSupportFragmentManager(), getString(R.string.delete_dialog_tag));
     }
+
     private void showCallDialog() {
         CallDialog.newInstance().show(getSupportFragmentManager(), getString(R.string.call_dialog_tag));
     }
@@ -66,8 +102,6 @@ public class MainActivity extends AppCompatActivity implements
         intent.putExtra(taskExtra, task);
         startActivity(intent);
     }
-
-
 /*
     public void addClick(View view) {
         EditText taskTitleEditText = findViewById(R.id.taskTitle);
@@ -102,29 +136,6 @@ public class MainActivity extends AppCompatActivity implements
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 */
-
-    public void addNewClick() {
-        if (Title.isEmpty() && Desc.isEmpty()) {
-            TaskListContent.addItem(new TaskListContent.Task(
-                    "Task" + TaskListContent.ITEMS.size() + 1,
-                    getString(R.string.default_title),
-                    getString(R.string.default_description)));
-        } else {
-            if (Title.isEmpty()) {
-                Title = getString(R.string.default_title);
-            }
-            if (Desc.isEmpty()) {
-                Desc = getString(R.string.default_description);
-            }
-            TaskListContent.addItem(new TaskListContent.Task("Task" + TaskListContent.ITEMS.size() + 1,
-                    Title,
-                    Desc));
-        }
-        ((TaskFragment) getSupportFragmentManager().findFragmentById(R.id.taskFragment)).notifyDataChange();
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert imm != null;
-    }
-
     @Override
     public void OnListFragmentClickInteraction(TaskListContent.Task task, int position) {
         //Toast.makeText(this, getString(R.string.item_selected_msg), Toast.LENGTH_SHORT).show();

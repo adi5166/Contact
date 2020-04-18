@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.Spinner;
-
-import com.app4.tasks.TaskListContent;
 
 public class AddContactActivity extends AppCompatActivity {
 
@@ -46,18 +43,25 @@ public class AddContactActivity extends AppCompatActivity {
 
     public void addClick2(View view) {
 
-        EditText taskTitleEditText = findViewById(R.id.taskTitle2);
-        EditText taskDescriptionEditText = findViewById(R.id.taskDescription2);
-        String taskTitle = taskTitleEditText.getText().toString();
-        String taskDescription = taskDescriptionEditText.getText().toString();
+        EditText taskNameEditText = findViewById(R.id.taskTitle);
+        EditText taskPhoneEditText = findViewById(R.id.taskPhone);
+        EditText taskSurnameEditText = findViewById(R.id.taskSurname);
+        EditText taskBirthdayEditText = findViewById(R.id.taskBirthday);
+
+        String taskName = taskNameEditText.getText().toString();
+        String taskPhone = taskPhoneEditText.getText().toString();
+        String taskSurname = taskSurnameEditText.getText().toString();
+        String taskBirthday = taskBirthdayEditText.getText().toString();
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         assert imm != null;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
         Intent data = new Intent();
-        data.putExtra(MainActivity.addTitle, taskTitle);
-        data.putExtra(MainActivity.addDesc, taskDescription);
+        data.putExtra(MainActivity.addName, taskName);
+        data.putExtra(MainActivity.addPhone, taskPhone);
+        data.putExtra(MainActivity.addSurname, taskSurname);
+        data.putExtra(MainActivity.addBirthday, taskBirthday);
         setResult(RESULT_OK, data);
         finish();
     }

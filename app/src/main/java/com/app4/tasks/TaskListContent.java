@@ -3,6 +3,8 @@ package com.app4.tasks;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.app4.R;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,35 +37,43 @@ public class TaskListContent {
     }
 
     private static Task createDummyItem(int position) {
-        return new Task(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new Task(String.valueOf(position), "Name " + position, makePhoneNumber(position), "Kowalski", "21101997");
     }
 
-    private static String makeDetails(int position) {
+    private static String makePhoneNumber(int position) {
         StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
+        int rnd = new Random().nextInt(9);
+        builder.append(rnd).append(position).append(584614).append(position);
         return builder.toString();
+        //TODO lepszy generator numerów telefonu
     }
 
     public static class Task implements Parcelable {
         public final String id;
-        public final String title;
-        public final String details;
+        public final String name;
+        public final String phone;
         public final String picPath;
+        public final String surname;
+        public final String birthday;
 
-        public Task(String id, String title, String details) {
+        public Task(String id, String name, String phone, String surname, String birthday) {
             this.id = id;
-            this.title = title;
-            this.details = details;
-            int number = new Random().nextInt(15)+1;
-            this.picPath = "avatar_"+number;
+            this.name = name;
+            this.phone = phone;
+            int rnd = new Random().nextInt(15)+1;
+            this.picPath = "avatar_"+rnd;
+            this.surname = surname;
+            this.birthday = birthday;
         }
 
 
         protected Task(Parcel in) {
             id = in.readString();
-            title = in.readString();
-            details = in.readString();
+            name = in.readString();
+            phone = in.readString();
             picPath = in.readString();
+            surname = in.readString();
+            birthday = in.readString();
         }
 
         public static final Creator<Task> CREATOR = new Creator<Task>() {
@@ -80,7 +90,7 @@ public class TaskListContent {
 
         @Override
         public String toString() {
-            return title;
+            return name;
         }
 
         @Override
@@ -91,9 +101,11 @@ public class TaskListContent {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeString(id);
-            dest.writeString(title);
-            dest.writeString(details);
+            dest.writeString(name);
+            dest.writeString(phone);
             dest.writeString(picPath);
+            dest.writeString(surname);
+            dest.writeString(birthday);
         }
     }
 }

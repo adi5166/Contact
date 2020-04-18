@@ -25,12 +25,14 @@ public class TaskInfoFragment extends Fragment {
     public void displayTask(TaskListContent.Task task) {
         FragmentActivity activity = getActivity();
 
-        TextView taskInfoTitle = activity.findViewById(R.id.taskInfoTitle);
-        TextView taskInfoDescription = activity.findViewById(R.id.taskInfoDescription);
+        TextView taskInfoName = activity.findViewById(R.id.taskInfoName);
+        TextView taskInfoPhone = activity.findViewById(R.id.taskInfoPhone);
         ImageView taskInfoImage = activity.findViewById(R.id.taskInfoImage);
+        TextView taskInfoBirthday = activity.findViewById(R.id.taskInfoBirthday);
 
-        taskInfoTitle.setText(task.title);
-        taskInfoDescription.setText(task.details);
+        taskInfoName.setText(getString(R.string.InfoNameSurname,task.name, task.surname));
+        taskInfoPhone.setText(getString(R.string.InfoPhone, task.phone));
+        taskInfoBirthday.setText(getString(R.string.InfoBirthday, task.birthday));
 
         if (task.picPath != null && !task.picPath.isEmpty()) {
             if (task.picPath.contains("avatar")) {

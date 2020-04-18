@@ -36,7 +36,7 @@ public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecycl
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Task task = mValues.get(position);
         holder.mItem = task;
-        holder.mContentView.setText(task.title);
+        holder.mContentView.setText(task.name);
         final String picPath = task.picPath;
         Context context = holder.mView.getContext();
         if (picPath != null && !picPath.isEmpty()) {

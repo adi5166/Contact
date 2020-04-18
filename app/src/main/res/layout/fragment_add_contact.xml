@@ -8,27 +8,43 @@
     tools:context=".AddContactFragment">
 
     <EditText
-        android:hint="@string/task_title"
-        android:id="@+id/taskTitle2"
+        android:id="@+id/taskTitle"
+        android:hint="@string/task_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/taskDescription2"
+        app:layout_constraintBottom_toTopOf="@+id/taskSurname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
-        android:id="@+id/taskDescription2"
+        android:id="@+id/taskPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/task_description"
+        android:hint="@string/task_phone_number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/taskSurname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/surname"
+        app:layout_constraintBottom_toTopOf="@+id/taskPhone"
+        tools:layout_editor_absoluteX="133dp" />
 
+    <EditText
+        android:id="@+id/taskBirthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/birthday"
+        app:layout_constraintTop_toBottomOf="@+id/taskPhone"
+        tools:layout_editor_absoluteX="131dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
