@@ -67,6 +67,7 @@ public class TaskFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         void OnListFragmentClickInteraction(TaskListContent.Task task, int position);
         void OnListFragmentLongClickInteraction(int position);
+        void OnListDeleteInteraction(int position);
     }
 }
 

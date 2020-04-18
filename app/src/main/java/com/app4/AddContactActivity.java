@@ -48,10 +48,8 @@ public class AddContactActivity extends AppCompatActivity {
 
         EditText taskTitleEditText = findViewById(R.id.taskTitle2);
         EditText taskDescriptionEditText = findViewById(R.id.taskDescription2);
-        Spinner drawableSpinner = findViewById(R.id.drawableSpinner2);
         String taskTitle = taskTitleEditText.getText().toString();
         String taskDescription = taskDescriptionEditText.getText().toString();
-        String selectedImage = drawableSpinner.getSelectedItem().toString();
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         assert imm != null;
@@ -60,7 +58,6 @@ public class AddContactActivity extends AppCompatActivity {
         Intent data = new Intent();
         data.putExtra(MainActivity.addTitle, taskTitle);
         data.putExtra(MainActivity.addDesc, taskDescription);
-        data.putExtra(MainActivity.addSp, selectedImage);
         setResult(RESULT_OK, data);
         finish();
     }

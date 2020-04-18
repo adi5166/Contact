@@ -2,7 +2,7 @@
     <string name="app_name">app4</string>
     <string name="task_title">task title</string>
     <string name="task_description">task description</string>
-    <string name="add_task">add task</string>
+    <string name="add_button">add task</string>
     <string name="default_title">default title</string>
     <string name="default_description">default description</string>
 
@@ -18,9 +18,9 @@
     <string name="delete_question">Are you sure to delete this one?</string>
     <string name="dialog_confirm">Confirm</string>
     <string name="dialog_cancel">Cancel</string>
-    <string name="long_click_msg">long click msg</string>
-    <string name="delete_cancel_msg">delete cancel msg</string>
-    <string name="retry_msg">retry msg</string>
+    <string name="long_delete_msg">long click msg</string>
+    <string name="delete_cancel_msg">Cancel delete</string>
+    <string name="retry_delete_msg">Retry delete</string>
     <string name="delete_dialog_tag">delete dialog tag</string>
 
     <string name="surname">Surname</string>
@@ -34,5 +34,11 @@
     <string name="default_surname">Kowalski</string>
     <string name="default_birthday">11111997</string>
     <string name="default_phone">123456789</string>
+
+    <string name="call_dialog_tag">call_dialog</string>
+    <string name="call_question">Do you want to call ?</string>
+    <string name="call_confirm">Yes</string>
+    <string name="call_cancel">Cancel</string>
+    <string name="long_call_msg">call_msg</string>
 
 </resources>

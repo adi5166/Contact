@@ -112,6 +112,15 @@ public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecycl
                 return false;
             }
         });
+
+        holder.mDeleteImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mListener) {
+                    mListener.OnListDeleteInteraction(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -124,12 +133,14 @@ public class MyTaskRecyclerViewAdapter extends RecyclerView.Adapter<MyTaskRecycl
         public final TextView mContentView;
         public final ImageView mItemImageView;
         public Task mItem;
+        public ImageView mDeleteImage;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mContentView = view.findViewById(R.id.content);
             mItemImageView = view.findViewById(R.id.item_image);
+            mDeleteImage = view.findViewById(R.id.deleteButton);
         }
 
         @Override

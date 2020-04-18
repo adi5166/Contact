@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddContactActivity">
+
     <fragment
         android:id="@+id/addFragment"
         android:name="com.app4.AddContactFragment"
@@ -17,12 +18,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_add_contact" />
+
     <Button
         android:id="@+id/addButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/add_task"
+        android:layout_margin="32dp"
+        android:text="@string/add_button"
         android:onClick="addClick2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
