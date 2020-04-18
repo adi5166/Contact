@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
             taskInfoFragment.displayTask(task);
         }
     }
-
+/*
     public void addClick(View view) {
         EditText taskTitleEditText = findViewById(R.id.taskTitle);
         EditText taskDescriptionEditText = findViewById(R.id.taskDescription);
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
         assert imm != null;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
+*/
 
     public void addNewClick() {
         if (Title.isEmpty() && Desc.isEmpty()) {
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
 
     @Override
     public void OnDialogNegativeClick(DialogFragment dialog) {
-        View v = findViewById(R.id.addButton);
+        View v = findViewById(R.id.fab);
         if (v != null) {
             Snackbar.make(v, getString(R.string.delete_cancel_msg), Snackbar.LENGTH_LONG)
                     .setAction(getString(R.string.retry_msg), new View.OnClickListener() {

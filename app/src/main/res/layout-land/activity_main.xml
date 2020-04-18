@@ -16,51 +16,23 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/taskTitle"
+            app:layout_constraintBottom_toTopOf="@+id/fab"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_task_list" />
-        <EditText
-            android:id="@+id/taskTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textSize="12sp"
-            android:hint="@string/task_title"
-            app:layout_constraintBottom_toTopOf="@+id/taskDescription"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-        <EditText
-            android:id="@+id/taskDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:textSize="12sp"
-            android:hint="@string/task_description"
-            app:layout_constraintBottom_toTopOf="@+id/drawableSpinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-        <Spinner
-            android:id="@+id/drawableSpinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:dropDownWidth="match_parent"
-            android:entries="@array/images"
-            app:layout_constraintBottom_toTopOf="@+id/addButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-        <Button
-            android:id="@+id/addButton"
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="addClick"
-            android:text="@string/add_task"
+            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     <fragment
         android:id="@+id/displayFragment"
