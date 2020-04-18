@@ -122,7 +122,7 @@ public class AddContactActivity extends AppCompatActivity {
             textLayoutSurame.setError("Field can't be empty");
             return false;
         } else if (!PATTERN_SURNAME.matcher(inputSurname).matches()) {
-            textLayoutSurame.setError("Enter a valid surname: only \" - \"");
+            textLayoutSurame.setError("Enter a valid surname: only 1 \" - \"");
             return false;
         } else {
             textLayoutSurame.setError(null);
