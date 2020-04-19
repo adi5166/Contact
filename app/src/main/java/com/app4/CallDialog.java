@@ -29,7 +29,6 @@ import android.content.DialogInterface;
             // AlertDialog.Builder will be used to create the dialog
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             // Set the message displayed in the dialog
-            //TODO dodać imię do połączenia
             builder.setMessage(getString(R.string.call_question));
             // Set the text and action for the positive button click
             builder.setPositiveButton(getString(R.string.call_confirm), new DialogInterface.OnClickListener(){

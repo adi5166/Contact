@@ -60,9 +60,9 @@ public class AddContactActivity extends AppCompatActivity {
         textLayoutBirthday = findViewById(R.id.text_input_birthday);
 
         if(confirmInput(view)) {
-            String taskName = textLayoutName.getEditText().getText().toString();
+            String taskName = textLayoutName.getEditText().getText().toString().trim();
             String taskPhone = textLayoutPhone.getEditText().getText().toString();
-            String taskSurname = textLayoutSurame.getEditText().getText().toString();
+            String taskSurname = textLayoutSurame.getEditText().getText().toString().trim();
             String taskBirthday = textLayoutBirthday.getEditText().getText().toString();
 
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -94,7 +94,7 @@ public class AddContactActivity extends AppCompatActivity {
             textLayoutName.setError("Field can't be empty");
             return false;
         } else if (!PATTERN_NAME.matcher(inputName).matches()) {
-            textLayoutName.setError("Enter a valid surname: only 1 space");
+            textLayoutName.setError("Enter a valid Name: only 1 space");
             return false;
         } else {
             textLayoutName.setError(null);
@@ -103,12 +103,12 @@ public class AddContactActivity extends AppCompatActivity {
     }
 
     private boolean validatePhone() {
-        String inputPhone = textLayoutPhone.getEditText().getText().toString().trim();
+        String inputPhone = textLayoutPhone.getEditText().getText().toString();
         if (inputPhone.isEmpty()) {
             textLayoutPhone.setError("Field can't be empty");
             return false;
         } else if (!PATTERN_PHONE.matcher(inputPhone).matches()) {
-            textLayoutPhone.setError("Enter a valid phone number");
+            textLayoutPhone.setError("Enter a valid Phone number");
             return false;
         } else {
             textLayoutPhone.setError(null);
@@ -122,7 +122,7 @@ public class AddContactActivity extends AppCompatActivity {
             textLayoutSurame.setError("Field can't be empty");
             return false;
         } else if (!PATTERN_SURNAME.matcher(inputSurname).matches()) {
-            textLayoutSurame.setError("Enter a valid surname: only 1 \" - \"");
+            textLayoutSurame.setError("Enter a valid Surname: only 1 \" - \"");
             return false;
         } else {
             textLayoutSurame.setError(null);
@@ -136,7 +136,7 @@ public class AddContactActivity extends AppCompatActivity {
             textLayoutBirthday.setError("Field can't be empty");
             return false;
         } else if (!PATTERN_BIRTHDAY.matcher(inputBirthday).matches()) {
-            textLayoutBirthday.setError("Enter a valid birthday: only dd/mm/yyyy");
+            textLayoutBirthday.setError("Enter a valid Birthday: dd/mm/yyyy");
             return false;
         } else {
             textLayoutBirthday.setError(null);

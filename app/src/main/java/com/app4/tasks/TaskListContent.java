@@ -3,6 +3,7 @@ package com.app4.tasks;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.app4.MainActivity;
 import com.app4.R;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class TaskListContent {
 
     public static final Map<String, Task> ITEM_MAP = new HashMap<String, Task>();
 
-    private static final int COUNT = 5;
+    private static final int COUNT = 2;
 
     static {
         for (int i = 1; i <= COUNT; i++) {
@@ -37,15 +38,16 @@ public class TaskListContent {
     }
 
     private static Task createDummyItem(int position) {
-        return new Task(String.valueOf(position), "Name " + position, makePhoneNumber(position), "Kowalski", "0"+((position-1)%9+1)+"/0"+((position-1)%9+1)+"/2020");
+        return new Task(String.valueOf(position), "Name " + position, makePhoneNumber(position), "Kowalski", "0"+((position-1)%9+1)+"/0"+((position+2)%9+1)+"/2020");
     }
 
     private static String makePhoneNumber(int position) {
         StringBuilder builder = new StringBuilder();
-        int rnd = new Random().nextInt(9);
-        builder.append(rnd).append(position).append(584614).append(position);
+        Random random = new Random();
+        int rnd = random.nextInt(9);
+        int rnd2 = random.nextInt(9);
+        builder.append(rnd2).append(position).append(58).append(rnd).append(64).append(position).append(rnd2);
         return builder.toString();
-        //TODO lepszy generator numerów telefonu
     }
 
     public static class Task implements Parcelable {

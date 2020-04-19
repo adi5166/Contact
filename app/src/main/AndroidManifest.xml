@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AddContactActivity"/>
-        <activity android:name=".TaskInfoActivity" />
+        <activity
+            android:name=".TaskInfoActivity"
+            android:configChanges="orientation|screenSize" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

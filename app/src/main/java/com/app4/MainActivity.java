@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO dodać opcje landscape do dodawania kontaktów
                 Intent intent = new Intent(v.getContext(), AddContactActivity.class);
                 startActivityForResult(intent,1);
             }
@@ -102,40 +101,7 @@ public class MainActivity extends AppCompatActivity implements
         intent.putExtra(taskExtra, task);
         startActivity(intent);
     }
-/*
-    public void addClick(View view) {
-        EditText taskTitleEditText = findViewById(R.id.taskTitle);
-        EditText taskDescriptionEditText = findViewById(R.id.taskDescription);
-        Spinner drawableSpinner = findViewById(R.id.drawableSpinner);
-        String taskTitle = taskTitleEditText.getText().toString();
-        String taskDescription = taskDescriptionEditText.getText().toString();
-        String selectedImage = drawableSpinner.getSelectedItem().toString();
 
-        if (taskTitle.isEmpty() && taskDescription.isEmpty()) {
-            TaskListContent.addItem(new TaskListContent.Task(
-                    "Task" + TaskListContent.ITEMS.size() + 1,
-                    getString(R.string.default_title),
-                    getString(R.string.default_description)));
-        } else {
-            if (taskTitle.isEmpty()) {
-                taskTitle = getString(R.string.default_title);
-            }
-            if (taskDescription.isEmpty()) {
-                taskDescription = getString(R.string.default_description);
-            }
-            TaskListContent.addItem(new TaskListContent.Task("Task" + TaskListContent.ITEMS.size() + 1,
-                    taskTitle,
-                    taskDescription));
-        }
-        ((TaskFragment) getSupportFragmentManager().findFragmentById(R.id.taskFragment)).notifyDataChange();
-        taskTitleEditText.setText("");
-        taskDescriptionEditText.setText("");
-
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert imm != null;
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-*/
     @Override
     public void OnListFragmentClickInteraction(TaskListContent.Task task, int position) {
         //Toast.makeText(this, getString(R.string.item_selected_msg), Toast.LENGTH_SHORT).show();
@@ -152,14 +118,7 @@ public class MainActivity extends AppCompatActivity implements
             taskInfoFragment.displayTask(task);
         }
     }
-/*
-    private void displayAddFragment(TaskListContent.Task task) {
-        TaskInfoFragment addContactFragment = ((TaskInfoFragment) getSupportFragmentManager().findFragmentById(R.id.addFragment));
-        if (addContactFragment != null) {
-            addContactFragment.displayAdd(task);
-        }
-    }
-*/
+
     @Override
     public void OnListFragmentLongClickInteraction(int position) {
         //Toast.makeText(this, getString(R.string.long_call_msg) + position, Toast.LENGTH_SHORT).show();
