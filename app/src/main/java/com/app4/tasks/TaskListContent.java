@@ -18,7 +18,7 @@ public class TaskListContent {
 
     public static final Map<String, Task> ITEM_MAP = new HashMap<String, Task>();
 
-    private static final int COUNT = 2;
+    private static final int COUNT = 5;
 
     static {
         for (int i = 1; i <= COUNT; i++) {
@@ -89,12 +89,7 @@ public class TaskListContent {
                 return new Task[size];
             }
         };
-
-        @Override
-        public String toString() {
-            return name;
-        }
-
+        
         @Override
         public int describeContents() {
             return 0;
